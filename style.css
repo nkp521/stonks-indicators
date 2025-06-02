@@ -5,7 +5,14 @@
   background: #f2f2f2;
   border-radius: 5px;
 }
-#advanced-chart,
+#advanced-chart {
+  text-align: center;
+  padding: 15px;
+  font-size: 25px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
 #company-profile,
 #fundamental-data,
 #technical-analysis,
