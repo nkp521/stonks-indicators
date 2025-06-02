@@ -1,1 +1,0 @@
-# stonks-indicators
