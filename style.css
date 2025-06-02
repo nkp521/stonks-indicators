@@ -3,8 +3,8 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  background-color: #f2f2f2;
-  color: #000;
+  background-color: #1e1e1e;
+  color: #f2f2f2;
   font-family: sans-serif;
 }
 
@@ -12,7 +12,7 @@ html, body {
   text-align: center;
   padding: 15px;
   font-size: 25px;
-  background: #f2f2f2;
+  background: #1e1e1e;
   border-radius: 5px;
 }
 
@@ -20,7 +20,7 @@ html, body {
   text-align: center;
   padding: 15px;
   font-size: 25px;
-  background: #f2f2f2;
+  background: #1e1e1e;
   border-radius: 5px;
   margin-bottom: 20px;
 }
@@ -28,11 +28,10 @@ html, body {
 #ticker-tape {
   text-align: center;
   font-size: 25px;
-  background: #f2f2f2;
+  background: #1e1e1e;
   border-radius: 5px;
   width: 100%;
   margin: 0;
-  border: none;
   display: block;
   position: sticky;
   top: 0;
@@ -45,7 +44,7 @@ html, body {
   max-width: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  background-color: #f2f2f2;
+  background-color: #1e1e1e;
 }
 
 header {
@@ -53,24 +52,24 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
-  background-color: #f2f2f2;
+  background-color: #1e1e1e;
 }
 
 #site-logo {
   font-size: 30px;
   font-weight: bold;
-  color: #000;
+  color: #f2f2f2;
   text-decoration: none;
 }
 
 input[type="search"] {
   padding: 10px 15px;
-  border: 1px solid #000;
+  border: none;
   border-radius: 20px;
   width: 250px;
   font-size: 15px;
-  background-color: #f2f2f2;
-  color: #000;
+  background-color: #1e1e1e;
+  color: #f2f2f2;
 }
 
 main {
@@ -80,13 +79,13 @@ main {
   padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
-  background-color: #f2f2f2;
+  background-color: #1e1e1e;
 }
 
 main section {
   padding: 15px;
-  background-color: #f2f2f2;
-  border: 1px solid #f2f2f2;
+  background-color: #1e1e1e;
+  border: none;
   border-radius: 5px;
   margin-bottom: 20px;
 }
