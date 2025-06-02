@@ -1,6 +1,7 @@
 .skeleton,
-#symbol-info,
-#advanced-chart,
+#advanced-chart {
+    height: 500px;
+}
 #company-profile,
 #fundamental-data,
 #technical-analysis,

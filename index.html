@@ -85,28 +85,49 @@
     </nav>
     
     <main>
-<section id="symbol-info">
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <script
-            type="text/javascript"
-            src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"
-            async
->
-            {
-            "symbol": "NASDAQ:AAPL",
-            "width": "100%",
-            "locale": "en",
-            "colorTheme": "light",
-            "isTransparent": true
-             }
-        </script>
-    </div>
-    <!-- TradingView Widget END -->
-</section>
-        <section id="advanced-chart">Advanced Chart</section>
-        <section id="company-profile">Company Profile</section>
+<section id="symbol-info">Symbol Info
+<!-- TradingView Real-Time-Chart Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+  {
+  "width": "980",
+  "height": "610",
+  "symbol": "NASDAQ:AAPL",
+  "interval": "60",
+  "timezone": "America/New_York",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "hide_top_toolbar": true,
+  "allow_symbol_change": true,
+  "studies": [
+    "STD;RSI"
+  ],
+  "support_host": "https://www.tradingview.com"
+}
+  </script>
+</div>
+<!-- TradingView Real-Time-Chart Widget END -->
+        <section id="company-profile">Company Profile
+<!-- TradingView Company-Profile Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js" async>
+  {
+  "width": "400",
+  "height": "550",
+  "isTransparent": true,
+  "colorTheme": "light",
+  "symbol": "NASDAQ:AAPL",
+  "locale": "en"
+}
+  </script>
+</div>
+<!-- TradingView Company-Profile Widget END -->
+        </section>
         <section id="fundamental-data">Fundamental Data</section>
         <section id="technical-analysis">Technical Analysis</section>
         <section id="top-stories">Top Stories</section>
