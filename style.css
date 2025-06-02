@@ -19,7 +19,9 @@
 }
 
 #ticker-tape {
-    width: 100%;
-    margin-bottom: var(--gap-size);
-    height: 75px;
+    text-align: center;
+    padding: 15px;
+    font-size: 25px;
+    background: #f2f2f2;
+    border-radius: 5px;
 }
