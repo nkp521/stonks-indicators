@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Analysis App</title>
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <a id="site-logo" href="#">Stock Analysis App</a>
+    <input type="search" placeholder="Search..." />
+    
+  </header>
+
+  <nav id="ticker-tape">
+    <!-- TradingView Ticker-Tape Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {
+        "symbols": [
+          {"proName": "NASDAQ:TSLA"},
+          {"proName": "NASDAQ:AAPL"},
+          {"proName": "NASDAQ:NVDA"},
+          {"proName": "NASDAQ:MSFT"},
+          {"proName": "NASDAQ:AMZN"},
+          {"proName": "NASDAQ:GOOGL"},
+          {"proName": "NASDAQ:META"},
+          {"proName": "NYSE:BRK.B"},
+          {"proName": "NYSE:LLY"},
+          {"proName": "NYSE:UNH"},
+          {"proName": "NYSE:V"},
+          {"proName": "NYSE:WMT"}
+        ],
+        "showSymbolLogo": true,
+        "colorTheme": "light",
+        "isTransparent": true,
+        "displayMode": "adaptive",
+        "locale": "en"
+      }
+      </script>
+    </div>
+    <!-- TradingView Ticker-Tape Widget END -->
+  </nav>
+
+  <main>
+    <section id="symbol-info">
+      <!-- TradingView Symbol-Info Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+  {
+  "symbol": "NASDAQ:AAPL",
+  "width": 550,
+  "locale": "en",
+  "colorTheme": "light",
+  "isTransparent": true
+}
+  </script>
+</div>
+<!-- TradingView Symbol-Info Widget END -->
+    </section>
+    <section id="advanced-chart">
+      <!-- TradingView Advanced Chart Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+        {
+          "width": "980",
+          "height": "610",
+          "symbol": "NASDAQ:AAPL",
+          "interval": "60",
+          "timezone": "America/New_York",
+          "theme": "light",
+          "style": "1",
+          "locale": "en",
+          "hide_top_toolbar": true,
+          "allow_symbol_change": true,
+          "studies": ["STD;RSI"],
+          "support_host": "https://www.tradingview.com"
+        }
+        </script>
+      </div>
+      <!-- TradingView Advanced Chart Widget END -->
+    </section>
+
+    <section id="company-profile">
+      <!-- TradingView Company Profile Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js" async>
+        {
+          "width": "400",
+          "height": "350",
+          "isTransparent": true,
+          "colorTheme": "light",
+          "symbol": "NASDAQ:AAPL",
+          "locale": "en"
+        }
+        </script>
+      </div>
+      <!-- TradingView Company Profile Widget END -->
+    </section>
+
+    <section id="fundamental-data">
+      <!-- TradingView Financials Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
+        {
+          "isTransparent": true,
+          "displayMode": "adaptive",
+          "width": 400,
+          "height": 550,
+          "colorTheme": "light",
+          "symbol": "NASDAQ:AAPL",
+          "locale": "en"
+        }
+        </script>
+      </div>
+      <!-- TradingView Financials Widget END -->
+    </section>
+    <div id="bottom-widgets">
+    <section id="technical-analysis">
+      <!-- TradingView Technical Analysis Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+        {
+          "interval": "1h",
+          "width": "100%",
+          "height": "60%",
+          "symbol": "NASDAQ:AAPL",
+          "showIntervalTabs": false,
+          "displayMode": "single",
+          "locale": "en",
+          "colorTheme": "light"
+        }
+        </script>
+      </div>
+      <!-- TradingView Technical Analysis Widget END -->
+    </section>
+
+    <section id="top-stories">
+      <!-- TradingView Top Stories Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+        {
+          "feedMode": "all_symbols",
+          "width": "100%,
+          "height": "60%",
+          "colorTheme": "light",
+          "isTransparent": false,
+          "displayMode": "regular",
+          "locale": "en"
+        }
+        </script>
+      </div>
+      <!-- TradingView Top Stories Widget END -->
+    </section>
+    </div>
+  <footer>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
