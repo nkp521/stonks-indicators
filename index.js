@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+const apiKey = process.env.API_KEY;
 const symbol = "AAPL";
 const from = "2025-05-01";
 const to = "2025-06-03";
