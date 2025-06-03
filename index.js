@@ -25,3 +25,15 @@ const displayNews = (articles) => {
     newsContainer.appendChild(p);
   });
 }
+
+//Grab Ticker from Stock-Search
+const searchInput = document.getElementById("stock-search");
+
+const handleTickerChange = (event) => {
+  if (event.key ==="Enter") {
+  const newTicker = event.target.value.toUpperCase();
+  console.log(newTicker);
+  }
+};
+
+searchInput.addEventListener("keydown", handleTickerChange);
