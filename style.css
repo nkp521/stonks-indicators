@@ -23,6 +23,8 @@ html, body {
   background: #fff;
   border-radius: 5px;
   margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
 }
 
 #ticker-tape {
@@ -175,9 +177,10 @@ main section {
   gap: 20px;
 }
 
-#right-side {
+#right-pane {
   display: flex;
   flex-direction: column;
   flex: 1;
   gap: 20px;
+  overflow-x: hidden;
 }

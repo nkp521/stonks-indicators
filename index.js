@@ -12,8 +12,8 @@ fetch(`https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=$
 const newsContainer = document.getElementById('news-articles');
 
 const displayNews = (articles) => {
-  const top10 = articles.slice(0, 10);
-  top10.forEach(article => {
+  const topTenArticles = articles.slice(0, 10);
+  topTenArticles.forEach(article => {
     const p = document.createElement("p");
 
     const link = document.createElement("a");
