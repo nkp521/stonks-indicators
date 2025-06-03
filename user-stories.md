@@ -8,7 +8,7 @@ As a user, I want to view a real-time TradingView stock chart with an RSI overla
 **Details**  
 On page load, display a real-time TradingView chart for AAPL. Include the RSI indicator with a 14-period setting. The chart will be embedded using the TradingView Widget API.
 
-## Feature 2: Change the Ticker Symbol
+## Feature 2: Add News for Stock
 
 **User Story**  
 As a user, I want to see the related news for the stock I am analyzing
