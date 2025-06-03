@@ -6,12 +6,13 @@
   <title>Stock Analysis App</title>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <link rel="stylesheet" href="style.css" />
+  
 </head>
 <body>
 
   <header>
     <a id="site-logo" href="#">Stock Analysis App</a>
-    <input type="search" placeholder="Search..." />
+    <input type="search" placeholder="Search for Stonk" />
     
   </header>
 
@@ -47,6 +48,14 @@
   </nav>
 
   <main>
+    <!-- News Section -->
+<div id="news-chart">
+<section id="news-container">
+  <h2>Top News</h2>
+  <div id="news-articles"></div>
+</section>
+<div id="right-side">
+<!-- End News Section -->
     <section id="symbol-info">
       <!-- TradingView Symbol-Info Widget BEGIN -->
 <div class="tradingview-widget-container">
@@ -70,7 +79,7 @@
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
         {
           "width": "980",
-          "height": "610",
+          "height": "100%",
           "symbol": "NASDAQ:AAPL",
           "interval": "60",
           "timezone": "America/New_York",
@@ -86,6 +95,9 @@
       </div>
       <!-- TradingView Advanced Chart Widget END -->
     </section>
+    </div>
+    </div>
+           </div>
 
     <section id="company-profile">
       <!-- TradingView Company Profile Widget BEGIN -->
@@ -163,9 +175,10 @@
       <!-- TradingView Top Stories Widget END -->
     </section>
     </div>
+  </main>
   <footer>
   </footer>
 
-  <script src="index.js"></script>
+  <script src="index.js" ></script>
 </body>
 </html>
