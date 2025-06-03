@@ -78,7 +78,6 @@ main {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  max-width: 1000px;
   margin: 0 auto;
   background-color: #fff;
 }
@@ -143,4 +142,42 @@ main section {
   display: flex;
   flex-direction: column;
   height: 550px;
+}
+
+#news-chart {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+  height: 650px;
+}
+
+#news-container {
+  width: 300px;
+  height: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+
+#news-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#symbol-info {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#right-side {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
 }
