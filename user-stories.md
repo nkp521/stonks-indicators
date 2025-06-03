@@ -16,15 +16,7 @@ As a user, I want to type in a ticker symbol so that I can switch the stock I’
 **Details**  
 Provide an input box where the user can type a valid stock symbol. When submitted, the chart dynamically updates without a page reload.
 
-## Feature 3: Add a Second Chart
-
-**User Story**  
-As a user, I want to view a second chart beside the first so that I can compare two stocks.
-
-**Details**  
-Include a toggle button to show/hide a second chart container. When enabled, a second input box and chart will appear. Each chart updates independently using its own symbol input.
-
-## Feature 4: Change Timeframes
+## Feature 3: Change Timeframes
 
 **User Story**  
 As a user, I want to switch between different time intervals (e.g., 1D, 1W, 1Min) so I can view various trends.
@@ -32,7 +24,7 @@ As a user, I want to switch between different time intervals (e.g., 1D, 1W, 1Min
 **Details**  
 Add a dropdown menu to select the time interval. Changing the interval updates the chart with the selected timeframe.
 
-## Feature 5: Quick Watchlist
+## Feature 4: Quick Watchlist
 
 **User Story**  
 As a user, I want quick access to common tickers so I can load their charts easily.
