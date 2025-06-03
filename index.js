@@ -1,17 +1,18 @@
 const apiKey = "d0vf12pr01qkepcvrurgd0vf12pr01qkepcvrus0";
-const ticker = "AAPL";
-const from = "2025-05-01";
-const to = "2025-06-03";
+// const ticker = "AAPL";
+// const from = "2025-05-01";
+// const to = "2025-06-03";
 
-fetch(`https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`)
-  .then(res => res.json())
-  .then(data => displayNews(data))
-  .catch(err => console.error(err));
+// fetch(`https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`)
+//   .then(res => res.json())
+//   .then(data => displayNews(data))
+//   .catch(err => console.error(err));
 
 // Create a news section
 const newsContainer = document.getElementById('news-articles');
 
 const displayNews = (articles) => {
+  newsContainer.innerHTML = "";
   const topTenArticles = articles.slice(0, 10);
   topTenArticles.forEach(article => {
     const p = document.createElement("p");
@@ -30,10 +31,25 @@ const displayNews = (articles) => {
 const searchInput = document.getElementById("stock-search");
 
 const handleTickerChange = (event) => {
-  if (event.key ==="Enter") {
+  if (event.key === "Enter") {
   const newTicker = event.target.value.toUpperCase();
   console.log(newTicker);
+  fetchNews(newTicker)
   }
 };
 
 searchInput.addEventListener("keydown", handleTickerChange);
+
+//Create Fetch News Function to fetch when a new stock is enetered
+
+const fetchNews = (ticker) => {
+  const from = "2025-05-01"
+  const to = "2025-06-03"
+  const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
+  console.log(ticker);
+
+  fetch (url) 
+  .then(res => res.json())
+  .then(data => displayNews(data))
+  .catch(err => console.error(err));
+}
