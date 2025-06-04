@@ -227,16 +227,18 @@ const addToWatchlist = (ticker) => {
 
 const renderWatchlistItem = (ticker) => {
   const li = document.createElement("li");
-  li.textContent = ticker;
+  
+  const tickerBtn = document.createElement("button");
+  tickerBtn.textContent = ticker;
 
-  li.addEventListener("click", () => {
+  tickerBtn.addEventListener("click", () => {
     currentTicker = ticker;
-    fetchNews(currentTicker);
-    renderSymbolInfo(currentTicker);
-    renderAdvancedChart(currentTicker, selectedInterval);
-    renderCompanyProfile(currentTicker);
-    renderFinancialData(currentTicker);
-    renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
+    fetchNews(ticker);
+    renderSymbolInfo(ticker);
+    renderAdvancedChart(ticker, selectedInterval);
+    renderCompanyProfile(ticker);
+    renderFinancialData(ticker);
+    renderTechnicalAnalysis(ticker, getTechInterval(selectedInterval));
     renderTopStories();
   });
 
@@ -251,7 +253,6 @@ const renderWatchlistItem = (ticker) => {
       watchlist.splice(index, 1);
     };
   });
-
-  li.appendChild(removeBtn);
+  li.append(tickerBtn, removeBtn);
   watchlistSection.appendChild(li);
 }
