@@ -32,6 +32,17 @@ const displayNews = (articles) => {
   });
 };
 
+const getTechInterval = (interval) =>
+  interval === "1" ? "1m" :
+  interval === "5" ? "5m" :
+  interval === "15" ? "15m" :
+  interval === "60" ? "1h" :
+  interval === "D" ? "1D" :
+  interval === "W" ? "1W" :
+  interval === "M" ? "1M" :
+  "1D";
+
+
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
   currentTicker = event.target.value.toUpperCase();
@@ -186,7 +197,7 @@ renderSymbolInfo(currentTicker);
 renderAdvancedChart(currentTicker, selectedInterval);
 renderCompanyProfile(currentTicker);
 renderFinancialData(currentTicker);
-renderTechnicalAnalysis(currentTicker, "1h");
+renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
 renderTopStories();
 
 const timeframeSelect = document.getElementById("timeframe-selector");
@@ -199,13 +210,3 @@ const handleTimeframeChange = (event) => {
 };
 
 timeframeSelect.addEventListener("change", handleTimeframeChange);
-
-const getTechInterval = (interval) =>
-  interval === "1" ? "1m" :
-  interval === "5" ? "5m" :
-  interval === "15" ? "15m" :
-  interval === "60" ? "1h" :
-  interval === "D" ? "1D" :
-  interval === "W" ? "1W" :
-  interval === "M" ? "1M" :
-  "1D";
