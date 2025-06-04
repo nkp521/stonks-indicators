@@ -47,13 +47,7 @@ const handleTickerChange = (event) => {
   if (event.key === "Enter") {
   currentTicker = event.target.value.toUpperCase();
 
-  fetchNews(currentTicker);
-  renderSymbolInfo(currentTicker);
-  renderAdvancedChart(currentTicker, selectedInterval);
-  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
-  renderCompanyProfile(currentTicker);
-  renderFinancialData(currentTicker);
-  renderTopStories(currentTicker);
+  loadStockDetails(currentTicker);
 
   searchInput.value = "";
   };
@@ -192,13 +186,6 @@ const renderTopStories = () => {
 };
 
 searchInput.addEventListener("keydown", handleTickerChange);
-fetchNews(currentTicker);
-renderSymbolInfo(currentTicker);
-renderAdvancedChart(currentTicker, selectedInterval);
-renderCompanyProfile(currentTicker);
-renderFinancialData(currentTicker);
-renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
-renderTopStories();
 
 const timeframeSelect = document.getElementById("timeframe-selector");
 
@@ -233,13 +220,7 @@ const renderWatchlistItem = (ticker) => {
 
   tickerBtn.addEventListener("click", () => {
     currentTicker = ticker;
-    fetchNews(ticker);
-    renderSymbolInfo(ticker);
-    renderAdvancedChart(ticker, selectedInterval);
-    renderCompanyProfile(ticker);
-    renderFinancialData(ticker);
-    renderTechnicalAnalysis(ticker, getTechInterval(selectedInterval));
-    renderTopStories();
+    loadStockDetails(ticker);
   });
 
   const removeBtn = document.createElement("button");
@@ -256,3 +237,15 @@ const renderWatchlistItem = (ticker) => {
   li.append(tickerBtn, removeBtn);
   watchlistSection.appendChild(li);
 }
+
+const loadStockDetails = (ticker) => {
+  fetchNews(ticker);
+  renderSymbolInfo(ticker);
+  renderAdvancedChart(ticker, selectedInterval);
+  renderCompanyProfile(ticker);
+  renderFinancialData(ticker);
+  renderTechnicalAnalysis(ticker, getTechInterval(selectedInterval));
+  renderTopStories();
+};
+
+loadStockDetails(currentTicker);
