@@ -1,6 +1,10 @@
 let currentTicker = "AAPL";
 let selectedInterval = "60"
 const searchInput = document.getElementById("stock-search");
+const timeframeSelect = document.getElementById("timeframe-selector");
+const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
+const watchlistSection = document.getElementById("watchlist");
+const watchlist = [];
 
 const fetchNews = (ticker) => {
   const from = "2025-05-01"
@@ -185,24 +189,12 @@ const renderTopStories = () => {
   container.appendChild(script);
 };
 
-searchInput.addEventListener("keydown", handleTickerChange);
-
-const timeframeSelect = document.getElementById("timeframe-selector");
-
 const handleTimeframeChange = (event) => {
   selectedInterval = event.target.value;
 
   renderAdvancedChart(currentTicker, selectedInterval);
   renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
 };
-
-timeframeSelect.addEventListener("change", handleTimeframeChange);
-
-const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
-const watchlistSection = document.getElementById("watchlist");
-addToWatchlistBtn.addEventListener("click", () => addToWatchlist(currentTicker));
-
-const watchlist = [];
 
 const addToWatchlist = (ticker) => {
   if (ticker && !watchlist.includes(ticker)) {
@@ -248,4 +240,7 @@ const loadStockDetails = (ticker) => {
   renderTopStories();
 };
 
+searchInput.addEventListener("keydown", handleTickerChange);
+timeframeSelect.addEventListener("change", handleTimeframeChange);
+addToWatchlistBtn.addEventListener("click", () => addToWatchlist(currentTicker));
 loadStockDetails(currentTicker);
