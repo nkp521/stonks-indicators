@@ -33,7 +33,7 @@ const displayNews = (articles) => {
 
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
-  const currentTicker = event.target.value.toUpperCase();
+  currentTicker = event.target.value.toUpperCase();
   currentTicker = currentTicker;
 
   fetchNews(currentTicker);
@@ -135,7 +135,7 @@ const renderFinancialData = (ticker) => {
   container.appendChild(script);
 };
 
-const renderTechnicalAnalysis = (ticker) => {
+const renderTechnicalAnalysis = (ticker, interval = "1h") => {
   const container = document.getElementById("technical-analysis");
   container.innerHTML = "";
 
@@ -145,7 +145,7 @@ const renderTechnicalAnalysis = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    interval: "1h",
+    interval: interval,
     width: "100%",
     height: "60%",
     symbol: `NASDAQ:${ticker}`,
@@ -158,7 +158,7 @@ const renderTechnicalAnalysis = (ticker) => {
   container.appendChild(script);
 };
 
-const renderTopStories = (ticker) => {
+const renderTopStories = () => {
   const container = document.getElementById("top-stories");
   container.innerHTML = "";
 
@@ -187,7 +187,7 @@ renderAdvancedChart(currentTicker);
 renderCompanyProfile(currentTicker);
 renderFinancialData(currentTicker);
 renderTechnicalAnalysis(currentTicker);
-renderTopStories(currentTicker);
+renderTopStories();
 
 const timeframeSelect = document.getElementById("timeframe-selector");
 
