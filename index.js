@@ -30,6 +30,7 @@ const handleTickerChange = (event) => {
   renderAdvancedChart(newTicker);
   renderCompanyProfile(newTicker);
   renderFinancialData(newTicker);
+  renderTechnicalAnalysis(newTicker);
   }
 };
 
@@ -119,7 +120,7 @@ const renderCompanyProfile = (ticker) => {
 renderCompanyProfile("AAPL");
 
 const renderFinancialData = (ticker) => {
-  const container = document.getElementById("fundamental-data");
+  const container = document.getElementById("financial-data");
   container.innerHTML = "";
 
   const script = document.createElement("script");
@@ -137,6 +138,30 @@ const renderFinancialData = (ticker) => {
     locale: "en",
   });
 
-  container.appendChild("script");
+  container.appendChild(script);
 };
 renderFinancialData("AAPL");
+
+const renderTechnicalAnalysis = (ticker) => {
+  const container = document.getElementById("technical-analysis");
+  container.innerHTML = "";
+
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
+  script.type = "text/javascript";
+  script.async = true;
+
+  script.innerHTML = JSON.stringify({
+    interval: "1h",
+    width: "100%",
+    height: "60%",
+    symbol: `NASDAQ:${ticker}`,
+    showIntervalTabs: false,
+    displayMode: "single",
+    locale: "en",
+    colorTheme: "light"
+  });
+
+  container.appendChild(script);
+};
+renderTechnicalAnalysis("AAPL");
