@@ -210,3 +210,5 @@ const handleTimeframeChange = (event) => {
 };
 
 timeframeSelect.addEventListener("change", handleTimeframeChange);
+
+const watchlist = [];
