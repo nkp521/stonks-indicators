@@ -1,4 +1,4 @@
-const defaultTicker = "AAPL";
+let currentTicker = "AAPL";
 const searchInput = document.getElementById("stock-search");
 
 const fetchNews = (ticker) => {
@@ -33,15 +33,16 @@ const displayNews = (articles) => {
 
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
-  const newTicker = event.target.value.toUpperCase();
-  console.log(newTicker);
-  fetchNews(newTicker);
-  renderSymbolInfo(newTicker);
-  renderAdvancedChart(newTicker);
-  renderCompanyProfile(newTicker);
-  renderFinancialData(newTicker);
-  renderTechnicalAnalysis(newTicker);
-  renderTopStories(newTicker);
+  const currentTicker = event.target.value.toUpperCase();
+  currentTicker = currentTicker;
+
+  fetchNews(currentTicker);
+  renderSymbolInfo(currentTicker);
+  renderAdvancedChart(currentTicker);
+  renderCompanyProfile(currentTicker);
+  renderFinancialData(currentTicker);
+  renderTechnicalAnalysis(currentTicker);
+  renderTopStories(currentTicker);
 
   searchInput.value = "";
   };
@@ -67,7 +68,7 @@ const renderSymbolInfo = (ticker) => {
   container.appendChild(script);
 };
 
-const renderAdvancedChart = (ticker) => {
+const renderAdvancedChart = (ticker, interval = "60") => {
   const container = document.getElementById("advanced-chart");
   container.innerHTML = "";
 
@@ -79,7 +80,7 @@ const renderAdvancedChart = (ticker) => {
   script.innerHTML = JSON.stringify({
     autosize: true,
     symbol: `NASDAQ:${ticker}`,
-    interval: "60",
+    interval: interval,
     timezone: "America/New_York",
     theme: "light",
     style: "1",
@@ -179,33 +180,20 @@ const renderTopStories = (ticker) => {
 };
 
 searchInput.addEventListener("keydown", handleTickerChange);
-fetchNews(defaultTicker);
-renderSymbolInfo(defaultTicker);
-renderAdvancedChart(defaultTicker);
-renderCompanyProfile(defaultTicker);
-renderFinancialData(defaultTicker);
-renderTechnicalAnalysis(defaultTicker);
-renderTopStories(defaultTicker);
+fetchNews(currentTicker);
+renderSymbolInfo(currentTicker);
+renderAdvancedChart(currentTicker);
+renderCompanyProfile(currentTicker);
+renderFinancialData(currentTicker);
+renderTechnicalAnalysis(currentTicker);
+renderTopStories(currentTicker);
 
 const timeframeSelect = document.getElementById("timeframe-selector");
 
 const handleTimeframeChange = (event) => {
-  const selectedValue = event.target.value;
-  console.log(selectedValue);
+  const selectedInterval = event.target.value;
+  console.log(selectedInterval);
+  
+  renderAdvancedChart(currentTicker, selectedInterval);
 }
 timeframeSelect.addEventListener("change", handleTimeframeChange);
-
-const mapToTradingviewInterval = (timeframe) => {
-  const intervalMap = {
-    "1": "1m",
-    "5": "5m",
-    "10": "10m",
-    "60": "1h",
-    "D": "1D",
-    "W": "1W",
-    "M": "1M",
-    "Y": "12M"
-  };
-
-  return intervalMap[timeframe] || "1D";
-};
