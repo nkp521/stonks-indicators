@@ -79,6 +79,7 @@ const renderAdvancedChart = (ticker, interval = "60") => {
 
   script.innerHTML = JSON.stringify({
     autosize: true,
+    hide_top_toolbar: true,
     symbol: `NASDAQ:${ticker}`,
     interval: interval,
     timezone: "America/New_York",
