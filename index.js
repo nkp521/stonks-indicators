@@ -215,11 +215,43 @@ const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
 const watchlistSection = document.getElementById("watchlist");
 addToWatchlistBtn.addEventListener("click", () => addToWatchlist(currentTicker));
 
-const watchlist = new Set();
+const watchlist = [];
 
-const addToWatchlist = (currentTicker) => {
-  if (currentTicker && !watchlist.has(currentTicker)) {
-    watchlist.add(currentTicker);
-    console.log(currentTicker);
+const addToWatchlist = (ticker) => {
+  if (ticker && !watchlist.includes(ticker)) {
+    watchlist.push(ticker);
+    console.log(ticker);
+    renderWatchlistItem(ticker);
   };
 };
+
+const renderWatchlistItem = (ticker) => {
+  const li = document.createElement("li");
+  li.textContent = ticker;
+
+  li.addEventListener("click", () => {
+    currentTicker = ticker;
+    fetchNews(currentTicker);
+    renderSymbolInfo(currentTicker);
+    renderAdvancedChart(currentTicker, selectedInterval);
+    renderCompanyProfile(currentTicker);
+    renderFinancialData(currentTicker);
+    renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
+    renderTopStories();
+  });
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "X"
+  removeBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    li.remove();
+    
+    const index = watchlist.indexOf(ticker);
+    if (index !== -1) {
+      watchlist.splice(index, 1);
+    };
+  });
+
+  li.appendChild(removeBtn);
+  watchlistSection.appendChild(li);
+}
