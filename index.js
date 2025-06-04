@@ -186,3 +186,26 @@ renderCompanyProfile(defaultTicker);
 renderFinancialData(defaultTicker);
 renderTechnicalAnalysis(defaultTicker);
 renderTopStories(defaultTicker);
+
+const timeframeSelect = document.getElementById("timeframe-selector");
+
+const handleTimeframeChange = (event) => {
+  const selectedValue = event.target.value;
+  console.log(selectedValue);
+}
+timeframeSelect.addEventListener("change", handleTimeframeChange);
+
+const mapToTradingviewInterval = (timeframe) => {
+  const intervalMap = {
+    "1": "1m",
+    "5": "5m",
+    "10": "10m",
+    "60": "1h",
+    "D": "1D",
+    "W": "1W",
+    "M": "1M",
+    "Y": "12M"
+  };
+
+  return intervalMap[timeframe] || "1D";
+};
