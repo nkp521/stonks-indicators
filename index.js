@@ -3,7 +3,7 @@ const searchInput = document.getElementById("stock-search");
 
 const fetchNews = (ticker) => {
   const from = "2025-05-01"
-  const to = "2025-06-03"
+  const to = new Date().toJSON().slice(0, 10);
   const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
    console.log("URL:", url);
 
@@ -79,7 +79,7 @@ const renderAdvancedChart = (ticker) => {
   script.innerHTML = JSON.stringify({
     autosize: true,
     symbol: `NASDAQ:${ticker}`,
-    interval: "D",
+    interval: "60",
     timezone: "America/New_York",
     theme: "light",
     style: "1",
