@@ -1,6 +1,10 @@
 let currentTicker = "AAPL";
 let selectedInterval = "60"
 const searchInput = document.getElementById("stock-search");
+const timeframeSelect = document.getElementById("timeframe-selector");
+const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
+const watchlistSection = document.getElementById("watchlist");
+const watchlist = [];
 
 const fetchNews = (ticker) => {
   const from = "2025-05-01"
@@ -47,13 +51,7 @@ const handleTickerChange = (event) => {
   if (event.key === "Enter") {
   currentTicker = event.target.value.toUpperCase();
 
-  fetchNews(currentTicker);
-  renderSymbolInfo(currentTicker);
-  renderAdvancedChart(currentTicker, selectedInterval);
-  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
-  renderCompanyProfile(currentTicker);
-  renderFinancialData(currentTicker);
-  renderTopStories(currentTicker);
+  loadStockDetails(currentTicker);
 
   searchInput.value = "";
   };
@@ -191,17 +189,6 @@ const renderTopStories = () => {
   container.appendChild(script);
 };
 
-searchInput.addEventListener("keydown", handleTickerChange);
-fetchNews(currentTicker);
-renderSymbolInfo(currentTicker);
-renderAdvancedChart(currentTicker, selectedInterval);
-renderCompanyProfile(currentTicker);
-renderFinancialData(currentTicker);
-renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
-renderTopStories();
-
-const timeframeSelect = document.getElementById("timeframe-selector");
-
 const handleTimeframeChange = (event) => {
   selectedInterval = event.target.value;
 
@@ -209,4 +196,51 @@ const handleTimeframeChange = (event) => {
   renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
 };
 
+const addToWatchlist = (ticker) => {
+  if (ticker && !watchlist.includes(ticker)) {
+    watchlist.push(ticker);
+    console.log(ticker);
+    renderWatchlistItem(ticker);
+  };
+};
+
+const renderWatchlistItem = (ticker) => {
+  const li = document.createElement("li");
+  
+  const tickerBtn = document.createElement("button");
+  tickerBtn.textContent = ticker;
+
+  tickerBtn.addEventListener("click", () => {
+    currentTicker = ticker;
+    loadStockDetails(ticker);
+  });
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "X"
+  removeBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    li.remove();
+    
+    const index = watchlist.indexOf(ticker);
+    if (index !== -1) {
+      watchlist.splice(index, 1);
+    };
+  });
+  li.append(tickerBtn, removeBtn);
+  watchlistSection.appendChild(li);
+}
+
+const loadStockDetails = (ticker) => {
+  fetchNews(ticker);
+  renderSymbolInfo(ticker);
+  renderAdvancedChart(ticker, selectedInterval);
+  renderCompanyProfile(ticker);
+  renderFinancialData(ticker);
+  renderTechnicalAnalysis(ticker, getTechInterval(selectedInterval));
+  renderTopStories();
+};
+
+searchInput.addEventListener("keydown", handleTickerChange);
 timeframeSelect.addEventListener("change", handleTimeframeChange);
+addToWatchlistBtn.addEventListener("click", () => addToWatchlist(currentTicker));
+loadStockDetails(currentTicker);
