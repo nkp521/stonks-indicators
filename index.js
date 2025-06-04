@@ -1,8 +1,22 @@
-// Create a news section
-const newsContainer = document.getElementById('news-articles');
+const defaultTicker = "AAPL";
+const searchInput = document.getElementById("stock-search");
+
+const fetchNews = (ticker) => {
+  const from = "2025-05-01"
+  const to = "2025-06-03"
+  const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
+   console.log("URL:", url);
+
+  fetch (url) 
+  .then(res => res.json())
+  .then(data => displayNews(data))
+  .catch(err => console.error(err));
+};
 
 const displayNews = (articles) => {
-  newsContainer.innerHTML = "";
+  const container  = document.getElementById('news-articles');
+  container.innerHTML = "";
+
   const topTenArticles = articles.slice(0, 10);
   topTenArticles.forEach(article => {
     const p = document.createElement("p");
@@ -13,13 +27,9 @@ const displayNews = (articles) => {
     link.target = "_blank";
 
     p.appendChild(link);
-    newsContainer.appendChild(p);
+    container.appendChild(p);
   });
-}
-
-//Grab Ticker from Stock-Search
-const searchInput = document.getElementById("stock-search");
-searchInput.innerHTML = "";
+};
 
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
@@ -32,23 +42,9 @@ const handleTickerChange = (event) => {
   renderFinancialData(newTicker);
   renderTechnicalAnalysis(newTicker);
   renderTopStories(newTicker);
-  }
-};
 
-searchInput.addEventListener("keydown", handleTickerChange);
-
-//Create Fetch News Function to fetch when a new stock is enetered
-
-const fetchNews = (ticker) => {
-  const from = "2025-05-01"
-  const to = "2025-06-03"
-  const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
-   console.log("URL:", url);
-
-  fetch (url) 
-  .then(res => res.json())
-  .then(data => displayNews(data))
-  .catch(err => console.error(err));
+  searchInput.value = "";
+  };
 };
 
 const renderSymbolInfo = (ticker) => {
@@ -70,9 +66,6 @@ const renderSymbolInfo = (ticker) => {
 
   container.appendChild(script);
 };
-
-fetchNews("AAPL");
-renderSymbolInfo("AAPL");
 
 const renderAdvancedChart = (ticker) => {
   const container = document.getElementById("advanced-chart");
@@ -96,7 +89,6 @@ const renderAdvancedChart = (ticker) => {
 
   container.appendChild(script);
 };
-renderAdvancedChart("AAPL");
 
 const renderCompanyProfile = (ticker) => {
   const container = document.getElementById("company-profile");
@@ -118,7 +110,6 @@ const renderCompanyProfile = (ticker) => {
 
   container.appendChild(script);
 };
-renderCompanyProfile("AAPL");
 
 const renderFinancialData = (ticker) => {
   const container = document.getElementById("financial-data");
@@ -141,7 +132,6 @@ const renderFinancialData = (ticker) => {
 
   container.appendChild(script);
 };
-renderFinancialData("AAPL");
 
 const renderTechnicalAnalysis = (ticker) => {
   const container = document.getElementById("technical-analysis");
@@ -165,23 +155,6 @@ const renderTechnicalAnalysis = (ticker) => {
 
   container.appendChild(script);
 };
-renderTechnicalAnalysis("AAPL");
-
-      // <!-- TradingView Top Stories Widget BEGIN -->
-      // <div class="tradingview-widget-container">
-      //   <div class="tradingview-widget-container__widget"></div>
-      //   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-      //   {
-      //     "feedMode": "all_symbols",
-      //     "width": "100%,
-      //     "height": "60%",
-      //     "colorTheme": "light",
-      //     "isTransparent": false,
-      //     "displayMode": "regular",
-      //     "locale": "en"
-      //   }
-      //   </script>
-      // </div>
 
 const renderTopStories = (ticker) => {
   const container = document.getElementById("top-stories");
@@ -204,4 +177,12 @@ const renderTopStories = (ticker) => {
 
   container.appendChild(script);
 };
-renderTopStories("AAPL");
+
+searchInput.addEventListener("keydown", handleTickerChange);
+fetchNews(defaultTicker);
+renderSymbolInfo(defaultTicker);
+renderAdvancedChart(defaultTicker);
+renderCompanyProfile(defaultTicker);
+renderFinancialData(defaultTicker);
+renderTechnicalAnalysis(defaultTicker);
+renderTopStories(defaultTicker);
