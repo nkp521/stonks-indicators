@@ -68,7 +68,7 @@ const renderSymbolInfo = (ticker) => {
   container.appendChild(script);
 };
 
-const renderAdvancedChart = (ticker, interval = "60") => {
+const renderAdvancedChart = (ticker, chartInterval) => {
   const container = document.getElementById("advanced-chart");
   container.innerHTML = "";
 
@@ -81,7 +81,7 @@ const renderAdvancedChart = (ticker, interval = "60") => {
     autosize: true,
     hide_top_toolbar: true,
     symbol: `NASDAQ:${ticker}`,
-    interval: interval,
+    interval: chartInterval,
     timezone: "America/New_York",
     theme: "light",
     style: "1",
@@ -135,7 +135,7 @@ const renderFinancialData = (ticker) => {
   container.appendChild(script);
 };
 
-const renderTechnicalAnalysis = (ticker, interval = "1h") => {
+const renderTechnicalAnalysis = (ticker, techInterval) => {
   const container = document.getElementById("technical-analysis");
   container.innerHTML = "";
 
@@ -145,7 +145,7 @@ const renderTechnicalAnalysis = (ticker, interval = "1h") => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    interval: interval,
+    interval: techInterval,
     width: "100%",
     height: "60%",
     symbol: `NASDAQ:${ticker}`,
@@ -192,9 +192,24 @@ renderTopStories();
 const timeframeSelect = document.getElementById("timeframe-selector");
 
 const handleTimeframeChange = (event) => {
-  const selectedInterval = event.target.value;
-  console.log(selectedInterval);
-  
-  renderAdvancedChart(currentTicker, selectedInterval);
-}
+  const rawInterval = event.target.value;
+
+  const chartInterval = rawInterval;
+
+  const techInterval = 
+    rawInterval === "1" ? "1m" :
+    rawInterval === "5" ? "5m" :
+    rawInterval === "15" ? "15m" :
+    rawInterval === "60" ? "1h" :
+    rawInterval === "D" ? "1D" :
+    rawInterval === "W" ? "1W" :
+    rawInterval === "M" ? "1M" :
+    "1D";
+
+  currentInterval = rawInterval;
+
+  renderAdvancedChart(currentTicker, chartInterval);
+  renderTechnicalAnalysis(currentTicker, techInterval);
+};
+
 timeframeSelect.addEventListener("change", handleTimeframeChange);
