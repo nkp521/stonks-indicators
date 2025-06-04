@@ -1,4 +1,5 @@
 let currentTicker = "AAPL";
+let selectedInterval = "60"
 const searchInput = document.getElementById("stock-search");
 
 const fetchNews = (ticker) => {
@@ -34,14 +35,24 @@ const displayNews = (articles) => {
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
   currentTicker = event.target.value.toUpperCase();
-  currentTicker = currentTicker;
 
   fetchNews(currentTicker);
   renderSymbolInfo(currentTicker);
-  renderAdvancedChart(currentTicker);
+  renderAdvancedChart(currentTicker, selectedInterval);
+
+  const techInterval = 
+    selectedInterval === "1" ? "1m" :
+    selectedInterval === "5" ? "5m" :
+    selectedInterval === "15" ? "15m" :
+    selectedInterval === "60" ? "1h" :
+    selectedInterval === "D" ? "1D" :
+    selectedInterval === "W" ? "1W" :
+    selectedInterval === "M" ? "1M" :
+    "1D";
+
+  renderTechnicalAnalysis(currentTicker, techInterval);
   renderCompanyProfile(currentTicker);
   renderFinancialData(currentTicker);
-  renderTechnicalAnalysis(currentTicker);
   renderTopStories(currentTicker);
 
   searchInput.value = "";
@@ -186,27 +197,27 @@ renderSymbolInfo(currentTicker);
 renderAdvancedChart(currentTicker);
 renderCompanyProfile(currentTicker);
 renderFinancialData(currentTicker);
-renderTechnicalAnalysis(currentTicker);
+renderTechnicalAnalysis(currentTicker, "1h");
 renderTopStories();
 
 const timeframeSelect = document.getElementById("timeframe-selector");
 
 const handleTimeframeChange = (event) => {
-  const rawInterval = event.target.value;
+  selectedInterval = event.target.value;
 
-  const chartInterval = rawInterval;
+  const chartInterval = selectedInterval;
 
   const techInterval = 
-    rawInterval === "1" ? "1m" :
-    rawInterval === "5" ? "5m" :
-    rawInterval === "15" ? "15m" :
-    rawInterval === "60" ? "1h" :
-    rawInterval === "D" ? "1D" :
-    rawInterval === "W" ? "1W" :
-    rawInterval === "M" ? "1M" :
+    selectedInterval === "1" ? "1m" :
+    selectedInterval === "5" ? "5m" :
+    selectedInterval === "15" ? "15m" :
+    selectedInterval === "60" ? "1h" :
+    selectedInterval === "D" ? "1D" :
+    selectedInterval === "W" ? "1W" :
+    selectedInterval === "M" ? "1M" :
     "1D";
 
-  currentInterval = rawInterval;
+  selectedInterval = selectedInterval;
 
   renderAdvancedChart(currentTicker, chartInterval);
   renderTechnicalAnalysis(currentTicker, techInterval);
