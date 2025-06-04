@@ -31,6 +31,7 @@ const handleTickerChange = (event) => {
   renderCompanyProfile(newTicker);
   renderFinancialData(newTicker);
   renderTechnicalAnalysis(newTicker);
+  renderTopStories(newTicker);
   }
 };
 
@@ -165,3 +166,42 @@ const renderTechnicalAnalysis = (ticker) => {
   container.appendChild(script);
 };
 renderTechnicalAnalysis("AAPL");
+
+      // <!-- TradingView Top Stories Widget BEGIN -->
+      // <div class="tradingview-widget-container">
+      //   <div class="tradingview-widget-container__widget"></div>
+      //   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+      //   {
+      //     "feedMode": "all_symbols",
+      //     "width": "100%,
+      //     "height": "60%",
+      //     "colorTheme": "light",
+      //     "isTransparent": false,
+      //     "displayMode": "regular",
+      //     "locale": "en"
+      //   }
+      //   </script>
+      // </div>
+
+const renderTopStories = (ticker) => {
+  const container = document.getElementById("top-stories");
+  container.innerHTML = "";
+
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
+  script.type = "text/javascript";
+  script.async = true;
+
+  script.innerHTML = JSON.stringify({
+    feedMode: "all_symbols",
+    width: "100%",
+    height: "60%",
+    colorTheme: "light",
+    isTransparent: false,
+    displayMode: "regular",
+    locale: "en"
+  });
+
+  container.appendChild(script);
+};
+renderTopStories("AAPL");
