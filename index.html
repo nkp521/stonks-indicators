@@ -12,7 +12,7 @@
 
   <header>
     <a id="site-logo" href="#">Stock Analysis App</a>
-    <input type="search" id="stock-search" placeholder="Search for Stonk" />
+    <input type="search" id="stock-search" placeholder="Search for Stonk, press Enter" />
     
   </header>
 
@@ -56,22 +56,9 @@
 </section>
 <div id="right-side">
 <!-- End News Section -->
-    <section id="symbol-info">
-      <!-- TradingView Symbol-Info Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
-  {
-  "symbol": "NASDAQ:AAPL",
-  "width": 1500,
-  "locale": "en",
-  "colorTheme": "light",
-  "isTransparent": true
-}
-  </script>
-</div>
+<!-- TradingView Symbol-Info Widget BEGIN -->
+    <section id="symbol-info"></section>
 <!-- TradingView Symbol-Info Widget END -->
-    </section>
     <section id="advanced-chart">
       <!-- TradingView Advanced Chart Widget BEGIN -->
       <div class="tradingview-widget-container">
@@ -178,7 +165,7 @@
   </main>
   <footer>
   </footer>
-
+  <script src="config.js"></script>
   <script src="index.js" ></script>
 </body>
 </html>
