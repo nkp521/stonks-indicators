@@ -6,14 +6,14 @@
   <title>Stock Analysis App</title>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <link rel="stylesheet" href="style.css" />
-  
 </head>
-<body>
 
+<body>
+  <!-- Header -->
   <header>
     <a id="site-logo" href="#">Stock Analysis App</a>
     <input type="search" id="stock-search" placeholder="Search for Stonk, press Enter" />
-    <label for="time-frame-selector">Select Timeframe:</label>
+    <label for="timeframe-selector">Select Timeframe:</label>
     <select id="timeframe-selector">
       <option value="1">1 Minute</option>
       <option value="5">5 Minute</option>
@@ -26,25 +26,19 @@
     </select>
   </header>
 
+  <!-- Ticker Tape -->
   <nav id="ticker-tape">
-    <!-- TradingView Ticker-Tape Widget BEGIN -->
     <div class="tradingview-widget-container">
       <div class="tradingview-widget-container__widget"></div>
       <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
       {
         "symbols": [
-          {"proName": "NASDAQ:TSLA"},
-          {"proName": "NASDAQ:AAPL"},
-          {"proName": "NASDAQ:NVDA"},
-          {"proName": "NASDAQ:MSFT"},
-          {"proName": "NASDAQ:AMZN"},
-          {"proName": "NASDAQ:GOOGL"},
-          {"proName": "NASDAQ:META"},
-          {"proName": "NYSE:BRK.B"},
-          {"proName": "NYSE:LLY"},
-          {"proName": "NYSE:UNH"},
-          {"proName": "NYSE:V"},
-          {"proName": "NYSE:WMT"}
+          {"proName": "NASDAQ:TSLA"}, {"proName": "NASDAQ:AAPL"},
+          {"proName": "NASDAQ:NVDA"}, {"proName": "NASDAQ:MSFT"},
+          {"proName": "NASDAQ:AMZN"}, {"proName": "NASDAQ:GOOGL"},
+          {"proName": "NASDAQ:META"}, {"proName": "NYSE:BRK.B"},
+          {"proName": "NYSE:LLY"}, {"proName": "NYSE:UNH"},
+          {"proName": "NYSE:V"}, {"proName": "NYSE:WMT"}
         ],
         "showSymbolLogo": true,
         "colorTheme": "light",
@@ -54,44 +48,51 @@
       }
       </script>
     </div>
-    <!-- TradingView Ticker-Tape Widget END -->
   </nav>
 
-  <main>
-        <button id="add-to-watchlist-btn">Add to Watchlist</button>
-    <section id="watchlist-section">
-      <h2>Watchlist</h2>
-      <ul id="watchlist"></ul>
+  <!-- Main Grid Layout -->
+  <main id="main-grid">
+
+    <!-- Left Column -->
+    <aside id="left-column">
+      <section id="news-container">
+        <h2>Top News</h2>
+        <div id="news-articles"></div>
+      </section>
+
+      <section id="top-stories">
+        <h2>Top Stories</h2>
+        <div id="top-stories-content"></div>
+      </section>
+    </aside>
+
+    <!-- Center Column -->
+    <section id="center-column">
+      <section id="symbol-info"></section>
+      <section id="advanced-chart"></section>
+      <section id="company-profile"></section>
     </section>
-    <!-- News Section -->
-<div id="news-chart">
-<section id="news-container">
-  <h2>Top News</h2>
-  <div id="news-articles"></div>
-</section>
-<div id="right-side">
-<!-- End News Section -->
-<!-- TradingView Symbol-Info Widget BEGIN -->
-    <section id="symbol-info"></section>
-<!-- TradingView Symbol-Info Widget END -->
-    <section id="advanced-chart"></section>
-    </div>
-    </div>
-    </div>
-    <section id="company-profile"></section>
-      <!-- TradingView Company Profile Widget END -->
-    <section id="financial-data"></section>
-      <!-- TradingView Financials Widget END -->
+
+    <!-- Right Column -->
+    <aside id="right-column">
+      <button id="add-to-watchlist-btn">Add to Watchlist</button>
+      <section id="watchlist-section">
+        <h2>Watchlist</h2>
+        <ul id="watchlist"></ul>
+      </section>
+    </aside>
+
+    <!-- Bottom Widgets -->
     <div id="bottom-widgets">
-    <section id="technical-analysis"></section>
-      <!-- TradingView Technical Analysis Widget END -->
-    <section id="top-stories"></section>
-      <!-- TradingView Top Stories Widget END -->
+      <section id="technical-analysis"></section>
+      <section id="financial-data"></section>
     </div>
   </main>
-  <footer>
-  </footer>
+
+  <footer></footer>
+
   <script src="config.js"></script>
-  <script src="index.js" ></script>
+  <script src="index.js"></script>
 </body>
+
 </html>
