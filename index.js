@@ -39,18 +39,7 @@ const handleTickerChange = (event) => {
   fetchNews(currentTicker);
   renderSymbolInfo(currentTicker);
   renderAdvancedChart(currentTicker, selectedInterval);
-
-  const techInterval = 
-    selectedInterval === "1" ? "1m" :
-    selectedInterval === "5" ? "5m" :
-    selectedInterval === "15" ? "15m" :
-    selectedInterval === "60" ? "1h" :
-    selectedInterval === "D" ? "1D" :
-    selectedInterval === "W" ? "1W" :
-    selectedInterval === "M" ? "1M" :
-    "1D";
-
-  renderTechnicalAnalysis(currentTicker, techInterval);
+  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
   renderCompanyProfile(currentTicker);
   renderFinancialData(currentTicker);
   renderTopStories(currentTicker);
@@ -194,7 +183,7 @@ const renderTopStories = () => {
 searchInput.addEventListener("keydown", handleTickerChange);
 fetchNews(currentTicker);
 renderSymbolInfo(currentTicker);
-renderAdvancedChart(currentTicker);
+renderAdvancedChart(currentTicker, selectedInterval);
 renderCompanyProfile(currentTicker);
 renderFinancialData(currentTicker);
 renderTechnicalAnalysis(currentTicker, "1h");
@@ -205,22 +194,18 @@ const timeframeSelect = document.getElementById("timeframe-selector");
 const handleTimeframeChange = (event) => {
   selectedInterval = event.target.value;
 
-  const chartInterval = selectedInterval;
-
-  const techInterval = 
-    selectedInterval === "1" ? "1m" :
-    selectedInterval === "5" ? "5m" :
-    selectedInterval === "15" ? "15m" :
-    selectedInterval === "60" ? "1h" :
-    selectedInterval === "D" ? "1D" :
-    selectedInterval === "W" ? "1W" :
-    selectedInterval === "M" ? "1M" :
-    "1D";
-
-  selectedInterval = selectedInterval;
-
-  renderAdvancedChart(currentTicker, chartInterval);
-  renderTechnicalAnalysis(currentTicker, techInterval);
+  renderAdvancedChart(currentTicker, selectedInterval);
+  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
 };
 
 timeframeSelect.addEventListener("change", handleTimeframeChange);
+
+const getTechInterval = (interval) =>
+  interval === "1" ? "1m" :
+  interval === "5" ? "5m" :
+  interval === "15" ? "15m" :
+  interval === "60" ? "1h" :
+  interval === "D" ? "1D" :
+  interval === "W" ? "1W" :
+  interval === "M" ? "1M" :
+  "1D";
