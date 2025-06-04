@@ -45,39 +45,16 @@ const fetchNews = (ticker) => {
   .then(res => res.json())
   .then(data => displayNews(data))
   .catch(err => console.error(err));
-}
-
-//Create inline JS forTradingView WIdgets to dynimically update with ticker change
-
-// <!-- TradingView Widget BEGIN -->
-// <div class="tradingview-widget-container">
-//   <div class="tradingview-widget-container__widget"></div>
-//   <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-//   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
-//   {
-//   "symbol": "NASDAQ:AAPL",
-//   "width": 550,
-//   "locale": "en",
-//   "colorTheme": "dark",
-//   "isTransparent": false
-// }
-//   </script>
-// </div>
-// <!-- TradingView Widget END -->
+};
 
 const renderSymbolInfo = (ticker) => {
   const container = document.getElementById("symbol-info");
-  console.log(1);
   container.innerHTML = "";
- console.log(2);
+
   const script = document.createElement("script");
-   console.log(3);
   script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js";
-   console.log(4);
   script.type = "text/javascript"
-   console.log(5);
   script.async = true;
- console.log(6);
 
   script.innerHTML = JSON.stringify({
     symbol: `NASDAQ:${ticker}`,
@@ -85,9 +62,10 @@ const renderSymbolInfo = (ticker) => {
     locale: "en",
     colorTheme: "light",
     isTransparent: false,
-  })
-   console.log(7);
-  container.appendChild(script);
-  console.log(8);
+  });
 
+  container.appendChild(script);
 };
+
+fetchNews("AAPL");
+renderSymbolInfo("AAPL");
