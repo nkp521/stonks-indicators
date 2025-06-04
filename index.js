@@ -211,4 +211,15 @@ const handleTimeframeChange = (event) => {
 
 timeframeSelect.addEventListener("change", handleTimeframeChange);
 
-const watchlist = [];
+const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
+const watchlistSection = document.getElementById("watchlist");
+addToWatchlistBtn.addEventListener("click", () => addToWatchlist(currentTicker));
+
+const watchlist = new Set();
+
+const addToWatchlist = (currentTicker) => {
+  if (currentTicker && !watchlist.has(currentTicker)) {
+    watchlist.add(currentTicker);
+    console.log(currentTicker);
+  };
+};
