@@ -29,6 +29,7 @@ const handleTickerChange = (event) => {
   renderSymbolInfo(newTicker);
   renderAdvancedChart(newTicker);
   renderCompanyProfile(newTicker);
+  renderFinancialData(newTicker);
   }
 };
 
@@ -37,7 +38,6 @@ searchInput.addEventListener("keydown", handleTickerChange);
 //Create Fetch News Function to fetch when a new stock is enetered
 
 const fetchNews = (ticker) => {
-  console.log("Fetching news for:", ticker);
   const from = "2025-05-01"
   const to = "2025-06-03"
   const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
@@ -117,3 +117,26 @@ const renderCompanyProfile = (ticker) => {
   container.appendChild(script);
 };
 renderCompanyProfile("AAPL");
+
+const renderFinancialData = (ticker) => {
+  const container = document.getElementById("fundamental-data");
+  container.innerHTML = "";
+
+  const script = document.createElement("script");
+  script.src = "https://s3.tradingview.com/external-embedding/embed-widget-financials.js"
+  script.type = "text/javascript";
+  script.async = true;
+
+  script.innerHTML = JSON.stringify({
+    isTransparent: true,
+    displayMode: "adaptive",
+    width: 400,
+    height: 550,
+    colorTheme: "light",
+    symbol: `NASDAQ:${ticker}`,
+    locale: "en",
+  });
+
+  container.appendChild("script");
+};
+renderFinancialData("AAPL");
