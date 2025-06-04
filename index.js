@@ -1,9 +1,10 @@
-const defaultTicker = "AAPL";
+let currentTicker = "AAPL";
+let selectedInterval = "60"
 const searchInput = document.getElementById("stock-search");
 
 const fetchNews = (ticker) => {
   const from = "2025-05-01"
-  const to = "2025-06-03"
+  const to = new Date().toJSON().slice(0, 10);
   const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
    console.log("URL:", url);
 
@@ -31,17 +32,28 @@ const displayNews = (articles) => {
   });
 };
 
+const getTechInterval = (interval) =>
+  interval === "1" ? "1m" :
+  interval === "5" ? "5m" :
+  interval === "15" ? "15m" :
+  interval === "60" ? "1h" :
+  interval === "D" ? "1D" :
+  interval === "W" ? "1W" :
+  interval === "M" ? "1M" :
+  "1D";
+
+
 const handleTickerChange = (event) => {
   if (event.key === "Enter") {
-  const newTicker = event.target.value.toUpperCase();
-  console.log(newTicker);
-  fetchNews(newTicker);
-  renderSymbolInfo(newTicker);
-  renderAdvancedChart(newTicker);
-  renderCompanyProfile(newTicker);
-  renderFinancialData(newTicker);
-  renderTechnicalAnalysis(newTicker);
-  renderTopStories(newTicker);
+  currentTicker = event.target.value.toUpperCase();
+
+  fetchNews(currentTicker);
+  renderSymbolInfo(currentTicker);
+  renderAdvancedChart(currentTicker, selectedInterval);
+  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
+  renderCompanyProfile(currentTicker);
+  renderFinancialData(currentTicker);
+  renderTopStories(currentTicker);
 
   searchInput.value = "";
   };
@@ -67,7 +79,7 @@ const renderSymbolInfo = (ticker) => {
   container.appendChild(script);
 };
 
-const renderAdvancedChart = (ticker) => {
+const renderAdvancedChart = (ticker, chartInterval) => {
   const container = document.getElementById("advanced-chart");
   container.innerHTML = "";
 
@@ -78,8 +90,9 @@ const renderAdvancedChart = (ticker) => {
 
   script.innerHTML = JSON.stringify({
     autosize: true,
+    hide_top_toolbar: true,
     symbol: `NASDAQ:${ticker}`,
-    interval: "D",
+    interval: chartInterval,
     timezone: "America/New_York",
     theme: "light",
     style: "1",
@@ -133,7 +146,7 @@ const renderFinancialData = (ticker) => {
   container.appendChild(script);
 };
 
-const renderTechnicalAnalysis = (ticker) => {
+const renderTechnicalAnalysis = (ticker, techInterval) => {
   const container = document.getElementById("technical-analysis");
   container.innerHTML = "";
 
@@ -143,7 +156,7 @@ const renderTechnicalAnalysis = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    interval: "1h",
+    interval: techInterval,
     width: "100%",
     height: "60%",
     symbol: `NASDAQ:${ticker}`,
@@ -156,7 +169,7 @@ const renderTechnicalAnalysis = (ticker) => {
   container.appendChild(script);
 };
 
-const renderTopStories = (ticker) => {
+const renderTopStories = () => {
   const container = document.getElementById("top-stories");
   container.innerHTML = "";
 
@@ -179,10 +192,21 @@ const renderTopStories = (ticker) => {
 };
 
 searchInput.addEventListener("keydown", handleTickerChange);
-fetchNews(defaultTicker);
-renderSymbolInfo(defaultTicker);
-renderAdvancedChart(defaultTicker);
-renderCompanyProfile(defaultTicker);
-renderFinancialData(defaultTicker);
-renderTechnicalAnalysis(defaultTicker);
-renderTopStories(defaultTicker);
+fetchNews(currentTicker);
+renderSymbolInfo(currentTicker);
+renderAdvancedChart(currentTicker, selectedInterval);
+renderCompanyProfile(currentTicker);
+renderFinancialData(currentTicker);
+renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
+renderTopStories();
+
+const timeframeSelect = document.getElementById("timeframe-selector");
+
+const handleTimeframeChange = (event) => {
+  selectedInterval = event.target.value;
+
+  renderAdvancedChart(currentTicker, selectedInterval);
+  renderTechnicalAnalysis(currentTicker, getTechInterval(selectedInterval));
+};
+
+timeframeSelect.addEventListener("change", handleTimeframeChange);
