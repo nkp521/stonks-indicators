@@ -22,8 +22,8 @@ const displayNews = (articles) => {
   const container  = document.getElementById('news-articles');
   container.innerHTML = "";
 
-  const topTenArticles = articles.slice(0, 10);
-  topTenArticles.forEach(article => {
+  const topArticles = articles.slice(0, 25);
+  topArticles.forEach(article => {
     const p = document.createElement("p");
 
     const link = document.createElement("a");
@@ -71,7 +71,7 @@ const renderSymbolInfo = (ticker) => {
     width: "100%",
     locale: "en",
     colorTheme: "light",
-    isTransparent: false,
+    isTransparent: true,
   });
 
   container.appendChild(script);
@@ -87,8 +87,7 @@ const renderAdvancedChart = (ticker, chartInterval) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    autosize: true,
-    hide_top_toolbar: true,
+    autosize: false,
     symbol: `NASDAQ:${ticker}`,
     interval: chartInterval,
     timezone: "America/New_York",
@@ -96,6 +95,16 @@ const renderAdvancedChart = (ticker, chartInterval) => {
     style: "1",
     locale: "en",
     allow_symbol_change: true,
+    width: "100%",
+    height: "500",
+    container_id: "advanced-chart",
+    isTransparent: true,
+    hide_side_toolbar: false,
+    studies: [],
+    container_id: "advanced-chart",
+    hide_top_toolbar: true,
+    border: false,
+    backgroundColor: "rgba(255, 255, 255, 0)"
   });
 
   container.appendChild(script);
@@ -112,8 +121,8 @@ const renderCompanyProfile = (ticker) => {
 
   script.innerHTML = JSON.stringify({
     width: "100%",
-    height: "350",
-    isTransparent: false,
+    height: "100%",
+    isTransparent: true,
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
     locale: "en",
@@ -132,10 +141,10 @@ const renderFinancialData = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    isTransparent: false,
-    displayMode: "adaptive",
+    isTransparent: true,
+    displayMode: "regular",
     width: "100%",
-    height: "400",
+    height: "100%",
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
     locale: "en",
@@ -156,7 +165,8 @@ const renderTechnicalAnalysis = (ticker, techInterval) => {
   script.innerHTML = JSON.stringify({
     interval: techInterval,
     width: "100%",
-    height: "400",
+    height: "100%",
+    isTransparent: true,
     symbol: `NASDAQ:${ticker}`,
     showIntervalTabs: false,
     displayMode: "single",
@@ -178,11 +188,11 @@ const renderTopStories = () => {
 
   script.innerHTML = JSON.stringify({
     feedMode: "all_symbols",
-    width: "100%",
-    height: "60%",
-    colorTheme: "light",
-    isTransparent: false,
+    isTransparent: true,
     displayMode: "regular",
+    width: "100%",
+    height: "100%",
+    colorTheme: "light",
     locale: "en"
   });
 
