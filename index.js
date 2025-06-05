@@ -94,7 +94,7 @@ const renderAdvancedChart = (ticker, chartInterval) => {
     theme: "light",
     style: "1",
     locale: "en",
-    allow_symbol_change: true,
+    allow_symbol_change: false,
     width: "100%",
     height: "500",
     container_id: "advanced-chart",
