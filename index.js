@@ -111,9 +111,9 @@ const renderCompanyProfile = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    width: "400",
+    width: "100%",
     height: "350",
-    isTransparent: true,
+    isTransparent: false,
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
     locale: "en",
@@ -132,10 +132,10 @@ const renderFinancialData = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    isTransparent: true,
+    isTransparent: false,
     displayMode: "adaptive",
-    width: 400,
-    height: 550,
+    width: "100%",
+    height: "400",
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
     locale: "en",
@@ -156,7 +156,7 @@ const renderTechnicalAnalysis = (ticker, techInterval) => {
   script.innerHTML = JSON.stringify({
     interval: techInterval,
     width: "100%",
-    height: "60%",
+    height: "400",
     symbol: `NASDAQ:${ticker}`,
     showIntervalTabs: false,
     displayMode: "single",
