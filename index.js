@@ -1,5 +1,5 @@
 let currentTicker = "AAPL";
-let selectedInterval = "60"
+let selectedInterval = "1"
 const searchInput = document.getElementById("stock-search");
 const timeframeSelect = document.getElementById("timeframe-selector");
 const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
@@ -22,9 +22,10 @@ const displayNews = (articles) => {
   const container  = document.getElementById('news-articles');
   container.innerHTML = "";
 
-  const topTenArticles = articles.slice(0, 10);
-  topTenArticles.forEach(article => {
+  const topArticles = articles.slice(0, 25);
+  topArticles.forEach(article => {
     const p = document.createElement("p");
+    p.className = "p-2 hover:bg-gray-100 rounded";
 
     const link = document.createElement("a");
     link.href = article.url;
@@ -71,7 +72,7 @@ const renderSymbolInfo = (ticker) => {
     width: "100%",
     locale: "en",
     colorTheme: "light",
-    isTransparent: false,
+    isTransparent: true,
   });
 
   container.appendChild(script);
@@ -87,15 +88,24 @@ const renderAdvancedChart = (ticker, chartInterval) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    autosize: true,
-    hide_top_toolbar: true,
+    autosize: false,
     symbol: `NASDAQ:${ticker}`,
     interval: chartInterval,
     timezone: "America/New_York",
     theme: "light",
     style: "1",
     locale: "en",
-    allow_symbol_change: true,
+    allow_symbol_change: false,
+    width: "100%",
+    height: "500",
+    container_id: "advanced-chart",
+    isTransparent: true,
+    hide_side_toolbar: false,
+    studies: [],
+    container_id: "advanced-chart",
+    hide_top_toolbar: true,
+    border: false,
+    backgroundColor: "rgba(255, 255, 255, 0)"
   });
 
   container.appendChild(script);
@@ -111,8 +121,8 @@ const renderCompanyProfile = (ticker) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    width: "400",
-    height: "350",
+    width: "100%",
+    height: "100%",
     isTransparent: true,
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
@@ -133,9 +143,9 @@ const renderFinancialData = (ticker) => {
 
   script.innerHTML = JSON.stringify({
     isTransparent: true,
-    displayMode: "adaptive",
-    width: 400,
-    height: 550,
+    displayMode: "regular",
+    width: "100%",
+    height: "100%",
     colorTheme: "light",
     symbol: `NASDAQ:${ticker}`,
     locale: "en",
@@ -156,7 +166,8 @@ const renderTechnicalAnalysis = (ticker, techInterval) => {
   script.innerHTML = JSON.stringify({
     interval: techInterval,
     width: "100%",
-    height: "60%",
+    height: "100%",
+    isTransparent: true,
     symbol: `NASDAQ:${ticker}`,
     showIntervalTabs: false,
     displayMode: "single",
@@ -178,11 +189,11 @@ const renderTopStories = () => {
 
   script.innerHTML = JSON.stringify({
     feedMode: "all_symbols",
-    width: "100%",
-    height: "60%",
-    colorTheme: "light",
-    isTransparent: false,
+    isTransparent: true,
     displayMode: "regular",
+    width: "100%",
+    height: "100%",
+    colorTheme: "light",
     locale: "en"
   });
 
@@ -206,9 +217,11 @@ const addToWatchlist = (ticker) => {
 
 const renderWatchlistItem = (ticker) => {
   const li = document.createElement("li");
+  li.className = "flex justify-between items-center bg-gray-50 hover:bg-gray-100 rounded-lg p-2 mb-2";
   
   const tickerBtn = document.createElement("button");
   tickerBtn.textContent = ticker;
+  tickerBtn.className = "text-blue-600 font-semibold hover:text-blue-800 flex-grow text-left px-2";
 
   tickerBtn.addEventListener("click", () => {
     currentTicker = ticker;
@@ -216,7 +229,9 @@ const renderWatchlistItem = (ticker) => {
   });
 
   const removeBtn = document.createElement("button");
-  removeBtn.textContent = "X"
+  removeBtn.textContent = "X";
+  removeBtn.className = "text-gray-400 hover:text-red-500 font-medium w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-200";
+  
   removeBtn.addEventListener("click", (event) => {
     event.stopPropagation();
     li.remove();
@@ -226,6 +241,7 @@ const renderWatchlistItem = (ticker) => {
       watchlist.splice(index, 1);
     };
   });
+  
   li.append(tickerBtn, removeBtn);
   watchlistSection.appendChild(li);
 }
