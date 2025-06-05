@@ -10,22 +10,12 @@
 </head>
 
 <body>
-  <!-- Header -->
   <header class="bg-white flex justify-between p-4 shadow-sm">
-    <!-- App Logo -->
-    <a id="site-logo" href="#" class="text-2xl text-gray-800 font-bold">
-      Stock Analysis App
-    </a>
 
-    <!-- Search Bar -->
-    <input 
-      type="search" 
-      id="stock-search" 
-      placeholder="Search for Stonk, press Enter" 
-      class="w-full max-w-md p-2 rounded bg-gray-100 text-gray-800"
-    />
+    <a id="site-logo" href="#" class="text-2xl text-gray-800 font-bold">Stock Analysis App</a>
 
-    <!-- Timeframe Selector -->
+    <input type="search" id="stock-search" placeholder="Search for Stonk, press Enter" class="w-full max-w-md p-2 rounded bg-gray-100 text-gray-800"/>
+
     <div class="flex gap-2">
       <label for="timeframe-selector" class="text-gray-600">Select Timeframe:</label>
       <select id="timeframe-selector" class="p-2 rounded bg-gray-100 text-gray-700">
@@ -41,7 +31,6 @@
     </div>
   </header>
 
-  <!-- Ticker Tape -->
   <nav id="ticker-tape" class="bg-white w-full">
     <div class="tradingview-widget-container">
       <div class="tradingview-widget-container__widget"></div>
@@ -65,10 +54,8 @@
     </div>
   </nav>
 
-  <!-- Main Grid Layout -->
   <main id="main-grid" class="grid grid-cols-12 gap-4 p-4 bg-white h-[calc(80vh-300px)] overflow-hidden">
 
-    <!-- Left Column -->
     <div id="left-column" class="col-span-3">
       <section id="news-container" class="bg-white p-4">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Top Stock News</h2>
@@ -76,14 +63,12 @@
       </section>
     </div>
 
-    <!-- Center Column -->
     <section id="center-column" class="col-span-8 flex flex-col gap-4 h-full">
       <section id="symbol-info" class="bg-white p-4 h-20"></section>
       
       <section id="advanced-chart" class="bg-white p-4 flex-grow min-h-[350px]"></section>
     </section>
 
-    <!-- Right Column -->
     <div id="right-column" class="col-span-1 flex flex-col gap-4 h-full">
       <button id="add-to-watchlist-btn" class="w-full p-2 bg-blue-500 text-white font-medium rounded-lg shadow-sm border border-blue-600 hover:bg-blue-600 hover:shadow-md transition-all">
         Add to Watchlist
@@ -96,7 +81,6 @@
     </div>
   </main>
 
-  <!-- Bottom Sections -->
   <div class="grid grid-cols-12 gap-4 p-4 bg-white h-[calc(17vh+255px)]">
     <section id="top-stories" class="col-span-3 bg-white p-4 h-full overflow-y-auto scrollbar-hide">
       <h2 class="text-xl font-bold text-gray-800 mb-4">Top Stories</h2>
