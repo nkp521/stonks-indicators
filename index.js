@@ -1,12 +1,18 @@
+import { fetchApiKey } from './apiKey.js';
+
 let currentTicker = "AAPL";
-let selectedInterval = "1"
+let selectedInterval = "1";
 const searchInput = document.getElementById("stock-search");
 const timeframeSelect = document.getElementById("timeframe-selector");
 const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
 const watchlistSection = document.getElementById("watchlist");
 const watchlist = [];
 
-const fetchNews = (ticker) => {
+fetchApiKey().then(apiKey => {
+  fetchNews("AAPL", apiKey);
+});
+
+const fetchNews = (ticker, apiKey) => {
   const from = "2025-05-01"
   const to = new Date().toJSON().slice(0, 10);
   const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
