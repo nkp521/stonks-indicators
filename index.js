@@ -25,6 +25,7 @@ const displayNews = (articles) => {
   const topArticles = articles.slice(0, 25);
   topArticles.forEach(article => {
     const p = document.createElement("p");
+    p.className = "p-2 hover:bg-gray-100 rounded";
 
     const link = document.createElement("a");
     link.href = article.url;
