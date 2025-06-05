@@ -1,5 +1,5 @@
 let currentTicker = "AAPL";
-let selectedInterval = "60"
+let selectedInterval = "1"
 const searchInput = document.getElementById("stock-search");
 const timeframeSelect = document.getElementById("timeframe-selector");
 const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
