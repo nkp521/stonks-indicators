@@ -1,5 +1,4 @@
 import { fetchApiKey } from './apiKey.js';
-
 let currentTicker = "AAPL";
 let selectedInterval = "1";
 const searchInput = document.getElementById("stock-search");
