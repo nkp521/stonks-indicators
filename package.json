@@ -1,5 +1,15 @@
 {
-  "dependencies": {
-    "dotenv": "^16.5.0"
+  "name": "stonks-indicators",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i style.css -o style.out.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^4.1.8"
   }
 }
