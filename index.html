@@ -6,24 +6,30 @@
   <title>Stock Analysis App</title>
   <script src="https://s3.tradingview.com/tv.js"></script>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
   <!-- Header -->
-  <header>
+  <header class="bg-white flex items-center justify-between px-6 py-4 shadow-sm">
     <a id="site-logo" href="#">Stock Analysis App</a>
-    <input type="search" id="stock-search" placeholder="Search for Stonk, press Enter" />
-    <label for="timeframe-selector">Select Timeframe:</label>
-    <select id="timeframe-selector">
-      <option value="1">1 Minute</option>
-      <option value="5">5 Minute</option>
-      <option value="15">15 Minute</option>
-      <option value="60">1 Hour</option>
-      <option value="D">Daily</option>
-      <option value="W">Weekly</option>
-      <option value="M">Monthly</option>
-      <option value="12M">Yearly</option>
-    </select>
+
+    <input type="search" id="stock-search" placeholder="Search for Stonk, press Enter" 
+    class ="mx-4 flex-1 max-w-md px-4 py-2 rounded bg-gray-100 text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+    <div class="flex items-center space-x-2">
+      <label for="timeframe-selector" class="text-sm text-gray-600">Select Timeframe:</label>
+      <select id="timeframe-selector" class="px-4 py-2 rounded-full text-sm text-gray-700 shadow-sm bg-gray-100 appearance-none focus:outline-none focus-ring-2 focus:ring-blue-400 transition duration-150">
+        <option value="1">1 Minute</option>
+        <option value="5">5 Minute</option>
+        <option value="15">15 Minute</option>
+        <option value="60">1 Hour</option>
+        <option value="D">Daily</option>
+        <option value="W">Weekly</option>
+        <option value="M">Monthly</option>
+        <option value="12M">Yearly</option>
+      </select>
+    </div>
   </header>
 
   <!-- Ticker Tape -->
@@ -37,7 +43,7 @@
           {"proName": "NASDAQ:NVDA"}, {"proName": "NASDAQ:MSFT"},
           {"proName": "NASDAQ:AMZN"}, {"proName": "NASDAQ:GOOGL"},
           {"proName": "NASDAQ:META"}, {"proName": "NYSE:BRK.B"},
-          {"proName": "NYSE:LLY"}, {"proName": "NYSE:UNH"},
+          {"proName": "NYSE:SPY"}, {"proName": "NYSE:UNH"},
           {"proName": "NYSE:V"}, {"proName": "NYSE:WMT"}
         ],
         "showSymbolLogo": true,
