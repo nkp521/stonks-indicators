@@ -94,7 +94,7 @@ const renderAdvancedChart = (ticker, chartInterval) => {
   script.async = true;
 
   script.innerHTML = JSON.stringify({
-    autosize: false,
+    autosize: true,
     symbol: `NASDAQ:${ticker}`,
     interval: chartInterval,
     timezone: "America/New_York",
@@ -102,18 +102,12 @@ const renderAdvancedChart = (ticker, chartInterval) => {
     style: "1",
     locale: "en",
     allow_symbol_change: false,
-    width: "100%",
-    height: "500",
     container_id: "advanced-chart",
     isTransparent: true,
     hide_side_toolbar: false,
-    studies: [],
-    container_id: "advanced-chart",
+    studies: ["STD;RSI"],
     hide_top_toolbar: true,
     border: false,
-    "studies": [
-    "STD;RSI"
-  ],
     backgroundColor: "rgba(255, 255, 255, 0)"
   });
 
