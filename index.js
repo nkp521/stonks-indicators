@@ -5,19 +5,18 @@ const searchInput = document.getElementById("stock-search");
 const timeframeSelect = document.getElementById("timeframe-selector");
 const addToWatchlistBtn = document.getElementById("add-to-watchlist-btn");
 const watchlistSection = document.getElementById("watchlist");
-const watchlist = [];
+let watchlist = [];
 
-fetchApiKey().then(apiKey => {
-  fetchNews("AAPL", apiKey);
-});
+fetchApiKey()
+  .then(apiKey => fetchNews("AAPL", apiKey))
+  .catch(err => console.error(err));
 
 const fetchNews = (ticker, apiKey) => {
   const from = "2025-05-01"
   const to = new Date().toJSON().slice(0, 10);
   const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}`;
-   console.log("URL:", url);
 
-  fetch (url) 
+  fetch(url)
   .then(res => res.json())
   .then(data => displayNews(data))
   .catch(err => console.error(err));
@@ -26,6 +25,8 @@ const fetchNews = (ticker, apiKey) => {
 const displayNews = (articles) => {
   const container  = document.getElementById('news-articles');
   container.innerHTML = "";
+
+if (!Array.isArray(articles)) return;
 
   const topArticles = articles.slice(0, 25);
   topArticles.forEach(article => {
@@ -218,7 +219,6 @@ const handleTimeframeChange = (event) => {
 const addToWatchlist = (ticker) => {
   if (ticker && !watchlist.includes(ticker)) {
     watchlist.push(ticker);
-    console.log(ticker);
     renderWatchlistItem(ticker);
   };
 };
@@ -255,13 +255,15 @@ const renderWatchlistItem = (ticker) => {
 }
 
 const loadStockDetails = (ticker) => {
-  fetchNews(ticker);
   renderSymbolInfo(ticker);
   renderAdvancedChart(ticker, selectedInterval);
   renderCompanyProfile(ticker);
   renderFinancialData(ticker);
   renderTechnicalAnalysis(ticker, getTechInterval(selectedInterval));
   renderTopStories();
+  fetchApiKey()
+  .then(apiKey => fetchNews(ticker, apiKey))
+  .catch(err => console.error(err));
 };
 
 searchInput.addEventListener("keydown", handleTickerChange);
