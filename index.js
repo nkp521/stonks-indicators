@@ -1,5 +1,4 @@
 import { fetchApiKey } from './apiKey.js';
-
 let currentTicker = "AAPL";
 let selectedInterval = "1";
 const searchInput = document.getElementById("stock-search");
@@ -111,6 +110,9 @@ const renderAdvancedChart = (ticker, chartInterval) => {
     container_id: "advanced-chart",
     hide_top_toolbar: true,
     border: false,
+    "studies": [
+    "STD;RSI"
+  ],
     backgroundColor: "rgba(255, 255, 255, 0)"
   });
 
