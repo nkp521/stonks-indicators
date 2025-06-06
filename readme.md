@@ -1,35 +1,35 @@
-# Stonks Indicators
-
-A simple stock dashboard that displays trading indicators, technical analysis, news, and financial data using TradingView widgets and the Finnhub API.
-
-## Live Dashboard
+# Stock Analysis Dashboard
 
 You can check out the dashboard using this link:  
-https://stock-dashboard-7vvt.onrender.com
+➡️ [Live Dashboard](https://stock-dashboard-7vvt.onrender.com)
 
-> Note: The front end may take up to 50 seconds to start due to Render's free tier inactivity.
+⚠️ **Note:** The frontend may take ~50 seconds to load on the first request due to Render cold start.
 
-### Features
-
-- Symbol info, advanced charts, technical analysis, company profile
-- News from Finnhub
-- Watchlist (stored locally for now)
-- Timeframe selector
-- Ability to change between different timeframes to analyze chart trends
+---
 
 ## Demo
 
-![Dashboard Demo](https://www.canva.com/design/DAGpinRFj_0/A2bmxmCSenbqd0k1HjNGLA/watch)
+▶️ [Watch Dashboard Demo](https://i.imgur.com/3TKS0Tg.mp4)
 
-## Backend
+---
 
-The backend server is live at:  
-https://stonks-backend-usmw.onrender.com
+## Features
 
-## GitHub Repos
+- View real-time stock info with TradingView widgets
+- Interactive stock chart with RSI (Relative Strength Index) overlay for momentum analysis
+- Add/remove stocks to a watchlist
+- Read recent company news headlines
+- Toggle between multiple timeframes for deeper analysis
+- Visualize technical analysis and financial statements
 
-Front-end: https://github.com/nkp521/stonks-indicators  
-Back-end: https://github.com/nkp521/Stonks-Backend
+---
+
+## Repositories
+
+🧠 [Frontend GitHub Repo](https://github.com/nkp521/stonks-indicators)  
+🛠 [Backend GitHub Repo](https://github.com/nkp521/Stonks-Backend)
+
+> ℹ️ Note: The backend is deployed on Render to securely host the API key.
 
 ## Run Locally
 
